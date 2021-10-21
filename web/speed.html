@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Vin&Frequency</title>
+  <link rel="stylesheet" href="speed.css">
+</head>
+<body> 
+<!-- partial:index.partial.html -->
+<div class='ManualEntry'>
+  <form id="myForm" method="POST" action = "http://localhost:8880/my/pro">
+
+
+  <h2>Vin and Frequency</h2>
+  <input name='vin' placeholder='No.Of VIN' type='number' id='vin'>
+  <br>
+ <input name='freq' placeholder='Frequency (in sec)' type='number' id='freq'>
+ 
+ <br>
+  <button type="submit">Submit</button>
+  <br>
+</div>
+<script>
+  const url = "http://localhost:8880/my/pro";
+  const formEl = document.getElementById("myfFrm");
+  formEl.addEventListener("submit",async(e) =>{
+    e.preventDefault();
+    const formData = new FormData(formEl);
+    const formDataSerialized = Object.fromEntries(formData);
+    console.log(formDataSerialized)
+  try{
+    const response = await fetch(url,{
+      method: "POST",
+      body:formData,
+      headers:{
+        "Content-Type":"application/json",
+      },
+    });
+  }catch(e){
+    console.error(e);
+    alert("there is an error");
+  }
+});
+</script>
+</body>
+</html>

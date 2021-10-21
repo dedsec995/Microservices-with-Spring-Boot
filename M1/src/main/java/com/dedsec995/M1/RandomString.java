@@ -3,7 +3,7 @@ package com.dedsec995.M1;
 public class RandomString {
 
     
-static String getVinSpeed(int n)
+public static String getVinSpeed(int n)
 {
 
 	// chose a Character and Integer random from this String

@@ -1,0 +1,116 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  
+}
+  
+
+body
+{
+  background-image:url("Req.gif");
+  font-family:"Poppins";
+  background-position: no-repeat;
+  background-size:cover;
+  background-position:left ;
+  background-attachment:fixed;
+  background-color: #41B3A3;
+  
+
+}
+
+h2 {
+  color:#3CAEA3;
+  font-family: "Tisa";
+  font-size: 20px;
+  font-weight: bold;
+  font-size: 3.6em;
+  text-align: center;
+  margin-bottom: 12px;
+}
+  
+
+a {
+  color: #435160;
+  text-decoration: none;
+}
+
+.Speed-Check {
+  width: 350px;
+  position: absolute;
+  top: 10%;
+  left: 80%;
+  margin-left: -175px;
+  font-size: 15px;
+}
+
+input[type="alphanumeric"], input[type="number"] {
+  width: 350px;
+  padding: 20px 0px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #435160;
+  outline: none;
+  color: #7E8CE0;
+  font-size: 20px;
+}
+
+
+label {
+  display: block;
+  position: absolute;
+  margin-right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  content: "";
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border: 3px solid #1d3249;
+}
+
+
+
+input[type="submit"]
+{
+  background:#8D8741;
+  border: 0;
+  width: 350px;
+  height: 40px;
+  border-radius: 3px;
+  color: #ffff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+input[type="submit"]:hover {
+  background: #16aa56;
+  animation-name: shake;
+}
+
+
+
+
+
+::-webkit-input-placeholder {
+  color:#659DBD;
+  font-size: 20px;
+}
+
+.animated {
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}

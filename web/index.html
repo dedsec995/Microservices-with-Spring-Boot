@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Speed Alert</title>
+  <link rel="stylesheet" href="style.css">
+  
+
+</head>
+<body> 
+<!-- partial:index.partial.html -->
+<div class='Speed-Check'>
+  <form id="myForm" method="POST" action = "http://localhost:8881/my/test">
+
+
+  <h2>Enter The Details</h2>
+  <input name='vin' placeholder='VIN Number' type='alphanumeric' id='vin'>
+  <br>
+ <input name='speed' placeholder='Speed' type='number' id='speed'>
+ <span style="margin-left:20px;color:#7E8CE0">km/hr</span>
+ <br>
+  <button type="submit">Submit</button>
+  <br>
+</div>
+<!-- partial -->
+<!-- <script type="module" src="./script.js"></script> -->
+<script>
+  const url = "http://localhost:8881/my/test2";
+  const formEl = document.getElementById("myfFrm");
+  formEl.addEventListener("submit",async(e) =>{
+    e.preventDefault();
+    const formData = new FormData(formEl);
+    const formDataSerialized = Object.fromEntries(formData);
+    console.log(formDataSerialized)
+  try{
+    const response = await fetch(url,{
+      method: "POST",
+      body:formData,
+      headers:{
+        "Content-Type":"application/json",
+      },
+    });
+  }catch(e){
+    console.error(e);
+    alert("there is an error");
+  }
+});
+</script>
+</body>
+</html>

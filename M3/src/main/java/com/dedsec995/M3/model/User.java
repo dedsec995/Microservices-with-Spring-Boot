@@ -13,16 +13,16 @@ public class User {
 
 	@PrimaryKey
 	private String vin;
-	private String flg;
+	private String verified;
 	private String speed;
-	private String alt;
+	private String alert;
 		
-	public User(String vin, String flg, String speed, String alt) {
+	public User(String vin, String verified, String speed, String alert) {
 		super();
 		this.vin = vin;
-		this.flg = flg;
+		this.verified = verified;
 		this.speed = speed;
-		this.alt = alt;
+		this.alert = alert;
 	}
 	
 	public String getVin() {
@@ -31,11 +31,11 @@ public class User {
 	public void setVin(String vin) {
 		this.vin = vin;
 	}
-	public String getFlg() {
-		return flg;
+	public String getverified() {
+		return verified;
 	}
-	public void setFlg(String flg) {
-		this.flg = flg;
+	public void setverified(String verified) {
+		this.verified = verified;
 	}
 	public String getSpeed() {
 		return speed;
@@ -43,10 +43,10 @@ public class User {
 	public void setSpeed(String speed) {
 		this.speed = speed;
 	}
-	public String getAlt() {
-		return alt;
+	public String getalert() {
+		return alert;
 	}
-	public void setAlt(String alt) {
-		this.alt = alt;
+	public void setalert(String alert) {
+		this.alert = alert;
 	}	
 }

@@ -21,14 +21,18 @@ public class Consumer {
 	    
 	    String vin = message.substring(0,17);
  	    String speed = message.substring(17,20);
- 	    boolean isalphaNumeric;
+ 	    boolean isvinaalphaNumeric;
+        boolean isvinnNumeric;
  	    boolean isNumeric;
         char verify = 'n';
         char alert = 'n';
- 	    isalphaNumeric = vin.matches("^[a-zA-Z0-9]*$");
- 	    isNumeric = speed.matches("^[0-9]*$");
+		String vina = vin.substring(0,10);
+        String vinn = vin.substring(11,16);
+		isvinaalphaNumeric = vina.matches("^[a-zA-Z0-9]*$");
+        isvinnNumeric = vinn.matches("^[0-9]*$");
+        isNumeric = speed.matches("^[0-9]*$");
  	   
- 	   if(isalphaNumeric && isNumeric) {
+ 	   if(isvinaalphaNumeric && isNumeric && isvinnNumeric) {
             if(Integer.parseInt(speed)>100){
                 alert = 'y';
                 verify = 'y';

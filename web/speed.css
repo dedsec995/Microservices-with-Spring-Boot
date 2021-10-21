@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+  }
+    
+  
+  body
+  {
+    font-family:"Poppins";
+    background-position: no-repeat;
+    background-size:cover;
+    background-position:left ;
+    background-attachment:fixed;
+    background-color: #41B3A3;
+    
+  
+  }
+  
+  h2 {
+    color:black;
+    font-family: "Tisa";
+    font-size: 20px;
+    font-weight: bold;
+    font-size: 3.6em;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  .ManualEntry {
+    width: 350px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    margin-left: -175px;
+    font-size: 15px;
+  }
+  
+  input[type="number"], input[type="number"] {
+    width: 350px;
+    padding: 20px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #435160;
+    outline: none;
+    color: black;
+    font-size: 20px;
+  }
+  button
+{
+  background:#8D8741;
+  border: 0;
+  width: 350px;
+  height: 40px;
+  border-radius: 3px;
+  color: #ffff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+button:hover {
+  background: #16aa56;
+  animation-name: shake;
+}
