@@ -1,12 +1,16 @@
 package com.dedsec995.M2.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import com.dedsec995.M2.service.Producer;
+import java.util.*;
 
 
 @RestController
@@ -26,25 +30,19 @@ public class kafkaController {
 
 	@PostMapping(value="/test")
     public String postBody(@RequestParam("vin") String vin,@RequestParam("speed") String speed) {
-        boolean isvinaalphaNumeric;
-        boolean isvinnNumeric;
+        System.out.println(vin);
+        System.out.println(speed);
+        boolean isalphaNumeric;
  	    boolean isNumeric;
         char verify = 'n';
         char alert = 'n';
-        if(vin.isEmpty() || speed.isEmpty()){
+ 	    isalphaNumeric = vin.matches("^[a-zA-Z0-9]*$");
+ 	    isNumeric = speed.matches("^[0-9]*$");
+        if(vin.isEmpty() || speed.isEmpty() || speed.length() < 3){
             return "Data is empty";
         }
-        if(vin.length()!=17 || speed.length()!= 3){
-            return "Data is not of appropriate size";
-        }
-        String vina = vin.substring(0,10);
-        String vinn = vin.substring(11,16);
-
-        isvinaalphaNumeric = vina.matches("^[a-zA-Z0-9]*$");
-        isvinnNumeric = vinn.matches("^[0-9]*$");
-        isNumeric = speed.matches("^[0-9]*$");
  	   
- 	   if(isvinaalphaNumeric && isNumeric && isvinnNumeric) {
+ 	   if(isalphaNumeric && isNumeric) {
             if(Integer.parseInt(speed)>100){
                 alert = 'y';
                 verify = 'y';
@@ -69,5 +67,9 @@ public class kafkaController {
             }
 		}
 		return "Data is acceptable";
+    }
+    @PostMapping(value="/test2")
+    public void postBody(@RequestBody String body) {
+        System.out.println(body);
     }
 }
