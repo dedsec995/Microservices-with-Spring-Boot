@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Pro {
-	public static final String topic = "k3-topic";
+	public static final String topic = "k2-topic";
 	
 	@Autowired
 	
