@@ -44,6 +44,10 @@ Dependencies for M3:
 Kafka Version:
   --Windows: 2.8.0 Scala 2.12
   --Linux: 3.0.0 Scala 2.13
+  
+Apache Cassandra:
+  --Both OS: 3.11.11
+
 ```
 
 ## Contributing
