@@ -1,6 +1,8 @@
 # MicroServices with Spring Boot
 
 Three services, M1, M2, and M3, connect with each other over Kafka topic k1-topic and k2-topic in this project.
+M1 Geneates data and passes to M2
+M2 check the data and passes it to M3
 Finally,M3 writes to Cassandra(database) 
 
 ## Installation
