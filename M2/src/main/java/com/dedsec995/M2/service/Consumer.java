@@ -15,12 +15,15 @@ public class Consumer {
 
         System.out.println("Consummed message "+message);
 
-        if(message.length() != 20) {
+        String msg=message.substring(0, 20);
+        String dateTime=message.substring(20);
+
+        if(msg.length() != 20) {
 	    	return 0;
 	    }
 	    
-	    String vin = message.substring(0,17);
- 	    String speed = message.substring(17,20);
+	    String vin = msg.substring(0,17);
+ 	    String speed = msg.substring(17,20);
  	    boolean isvinaalphaNumeric;
         boolean isvinnNumeric;
  	    boolean isNumeric;
@@ -36,11 +39,11 @@ public class Consumer {
             if(Integer.parseInt(speed)>100){
                 alert = 'y';
                 verify = 'y';
-                producer.publishToTopic(vin+verify+speed+alert);
+                producer.publishToTopic(vin+verify+speed+alert+dateTime);
             }
             else{
                 verify = 'y';
-                producer.publishToTopic(vin+verify+speed+alert);
+                producer.publishToTopic(vin+verify+speed+alert+dateTime);
             }
  		  return 1;
  	   }
@@ -48,12 +51,12 @@ public class Consumer {
 			if(Integer.parseInt(speed)>100){
                 alert = 'y';
                 verify = 'n';
-                producer.publishToTopic(vin+verify+speed+alert);
+                producer.publishToTopic(vin+verify+speed+alert+dateTime);
             }
 			else{
                 verify = 'n';
 				alert ='n';
-                producer.publishToTopic(vin+verify+speed+alert);
+                producer.publishToTopic(vin+verify+speed+alert+dateTime);
             }
 		}
 		return 0;

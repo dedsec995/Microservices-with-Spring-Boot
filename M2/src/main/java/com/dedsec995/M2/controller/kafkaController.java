@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.dedsec995.M2.service.Producer;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 
 @RestController
 @CrossOrigin
@@ -29,6 +34,10 @@ public class kafkaController {
         boolean isvinaalphaNumeric;
         boolean isvinnNumeric;
  	    boolean isNumeric;
+        Date date=new Date();
+        Timestamp ts=new Timestamp(date.getTime());
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String strDate=dateFormat.format(ts);
         char verify = 'n';
         char alert = 'n';
         if(vin.isEmpty() || speed.isEmpty()){
@@ -48,11 +57,11 @@ public class kafkaController {
             if(Integer.parseInt(speed)>100){
                 alert = 'y';
                 verify = 'y';
-                producer.publishToTopic(vin+verify+speed+alert);
+                producer.publishToTopic(vin+verify+speed+alert+strDate);
             }
             else{
                 verify = 'y';
-                producer.publishToTopic(vin+verify+speed+alert);
+                producer.publishToTopic(vin+verify+speed+alert+strDate);
             }
  		  return "Data is acceptable";
  	   }
@@ -60,12 +69,12 @@ public class kafkaController {
 			if(Integer.parseInt(speed)>100){
                 alert = 'y';
                 verify = 'n';
-                producer.publishToTopic(vin+verify+speed+alert);
+                producer.publishToTopic(vin+verify+speed+alert+strDate);
             }
 			else{
                 verify = 'n';
 				alert ='n';
-                producer.publishToTopic(vin+verify+speed+alert);
+                producer.publishToTopic(vin+verify+speed+alert+strDate);
             }
 		}
 		return "Data is acceptable";

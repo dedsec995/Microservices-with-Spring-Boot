@@ -1,11 +1,13 @@
 package com.dedsec995.M1;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.retry.backoff.Sleeper;
 
 import javax.annotation.PostConstruct;
 
@@ -37,7 +39,12 @@ public class M1Application {
 		String result1 = RandomString.getVinSpeed(n);
 		// Get and display the alphanumeric string
 		System.out.println(result1);
-		producer.publishToTopic(result1);		
+		Date date=new Date();
+		Timestamp ts=new Timestamp(date.getTime());
+		DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String strDate=dateFormat.format(ts);
+			
+		producer.publishToTopic(result1+strDate);		
 		}
 	// int secondsToSleep = 5;
 	// System.out.println("How many {VIN,Speed} You want to generate");
