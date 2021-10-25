@@ -50,6 +50,99 @@ Apache Cassandra:
 
 ```
 
+## Setting up Kafka
+### In Linux:
+Fire up a Terminal
+```bash
+bin/zookeeper-server-start.sh config/zookeeper.properties
+```
+In Another Terminal
+```bash
+bin/kafka-server-start.sh config/server.properties
+```
+Creating Topics
+```bash
+bin/kafka-topics.sh --create --topic k1-topic --bootstrap-server localhost:9092
+bin/kafka-topics.sh --create --topic k2-topic --bootstrap-server localhost:9092
+```
+Another Terminal for Cassandra
+```bash
+sudo Cassandra -R
+```
+### In Windows:
+Open Command Prompt
+```bash
+./bin/windows/zookeeper-server-start.bat config/zookeeper.properties
+```
+Open Another Cmd
+```cmd
+./bin/windows/kafka-server-start.bat config/server.properties
+```
+Creating Topics
+```cmd
+./bin/windows/kafka-topics.bat --create --topic k1-topic --bootstrap-server localhost:9092
+./bin/windows/kafka-topics.bat --create --topic k2-topic --bootstrap-server localhost:9092
+```
+Another Window to the /bin folder of Cassandra
+```cmd
+cassandra
+```
+
+## Setting up Cassandra
+### In Linux:
+Download Cassandra from [here](https://www.apache.org/dyn/closer.lua/cassandra/3.11.11/apache-cassandra-3.11.11-bin.tar.gz)
+```bash
+sudo Cassandra -R
+```
+To interact with cassandra open up cqlsh (python2.7 is required)
+```bash
+cqlsh
+```
+```bash
+CREATE KEYSPACE cassdb WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 1};
+USE cassdb;
+CREATE TABLE User(
+    vin text ,
+    verified text,
+    speed int,
+    alert text,
+    timest Timestamp,
+    PRIMARY KEY(timest,vin),
+);
+```
+To view the data
+```bash
+use cassdb;
+select vin,verified,speed,alert,timest from User;
+```
+### In Windows:
+Download Cassandra from [here](https://www.apache.org/dyn/closer.lua/cassandra/3.11.11/apache-cassandra-3.11.11-bin.tar.gz) and open command prompt at the /bin folder of Cassandra
+```cmd
+cassandra
+```
+To interact with cassandra open up cqlsh (python2.7 is required)
+```bash
+cqlsh
+```
+```bash
+CREATE KEYSPACE cassdb WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 1};
+USE cassdb;
+CREATE TABLE User(
+    vin text ,
+    verified text,
+    speed int,
+    alert text,
+    timest Timestamp,
+    PRIMARY KEY(timest,vin),
+);
+```
+To view the data
+```bash
+use cassdb;
+select vin,verified,speed,alert,timest from User;
+```
+
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
