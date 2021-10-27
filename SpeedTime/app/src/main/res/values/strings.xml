@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Speed Time</string>
+    <string name="no_of_vin">No. of Vin</string>
+    <string name="frequency">Frequency</string>
+    <string name="same_vin">Do you want same vin?</string>
+    <string name="manual_vin">Vin Number</string>
+    <string name="manual_speed">Speed</string>
+    <string name="submit">Create</string>
+
+    <string-array name="vin_same_select_param">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+</resources>
