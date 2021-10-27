@@ -34,7 +34,10 @@ public class KafkaController {
         // System.out.println(freq);
         int secondsToSleep = freq;
 	    int i;
-		boolean isEqual = same.isPresent() && same.get().equals("y");
+		boolean isEqual1 = same.isPresent() && same.get().equals("Yes");
+		boolean isEqual2 = same.isPresent() && same.get().equals("Y");
+		boolean isEqual3 = same.isPresent() && same.get().equals("yes");
+		boolean isEqual4 = same.isPresent() && same.get().equals("y");
 		if(same.isEmpty()){
 			try{
 				for(i=0;i<vin;i++){
@@ -51,7 +54,7 @@ public class KafkaController {
 				Thread.currentThread().interrupt();
 			}
 		}
-		else if(isEqual){
+		else if(isEqual1 || isEqual2 || isEqual3 || isEqual4){
 			String vinn = RandomString.getVin();
 			try{
 				for(i=0;i<vin;i++){
