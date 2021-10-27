@@ -10,8 +10,8 @@ Finally,M3 writes to Cassandra(database)
 Change the Version in checkout to the latest version avaiable
 
 ```bash
-git clone https://github.com/dedsec995/Microservies-with-Spring-Boot
-cd Microservies-with-Spring-Boot
+git clone https://github.com/dedsec995/Microservices-with-Spring-Boot.git
+cd Microservices-with-Spring-Boot
 git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
 git fetch --all
 git pull --all
