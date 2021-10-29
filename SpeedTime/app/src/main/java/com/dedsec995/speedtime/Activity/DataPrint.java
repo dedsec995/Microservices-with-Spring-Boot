@@ -1,10 +1,15 @@
 package com.dedsec995.speedtime.Activity;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.dedsec995.speedtime.Background.LoadingDialog;
+import com.dedsec995.speedtime.Background.PostAdapter;
 import com.dedsec995.speedtime.Interface.ApiInterface;
 import com.dedsec995.speedtime.Model.Post;
 import com.dedsec995.speedtime.R;
@@ -18,14 +23,24 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DataPrint extends AppCompatActivity {
-    private TextView textViewResult;
+    RecyclerView recyclerView;
+//    private TextView textViewResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_print);
 
-        textViewResult = findViewById(R.id.text_view_result);
+        LoadingDialog loadingDialog = new LoadingDialog(DataPrint.this);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        showDAta(loadingDialog);
+    }
+
+    private void showDAta(LoadingDialog loadingDialog) {
+        loadingDialog.startLoadingDialog();
+        //        textViewResult = findViewById(R.id.text_view_result);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.203:8878/")
@@ -41,27 +56,32 @@ public class DataPrint extends AppCompatActivity {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
 
                 if (!response.isSuccessful()) {
-                    textViewResult.setText("Code: " + response.code());
+//                    textViewResult.setText("Code: " + response.code());
                     return;
                 }
-
+                loadingDialog.dismissDialog();
                 List<Post> posts = response.body();
+                recyclerView.setAdapter(new PostAdapter(DataPrint.this,posts));
 
-                for (Post post : posts) {
-                    String content = "";
-                    content += "Vin: " + post.getVin() + "\n";
-                    content += "Verified: " + post.getVerified() + "\n";
-                    content += "Speed: " + post.getSpeed() + "\n";
-                    content += "Alert: " + post.getAlert() + "\n";
-                    content += "TimeStamp: " + post.getTimest() + "\n\n";
+//                List<Post> posts = response.body();
+//
+//                for (Post post : posts) {
+//                    String content = "";
+//                    content += "Vin: " + post.getVin() + "\n";
+//                    content += "Verified: " + post.getVerified() + "\n";
+//                    content += "Speed: " + post.getSpeed() + "\n";
+//                    content += "Alert: " + post.getAlert() + "\n";
+//                    content += "TimeStamp: " + post.getTimest() + "\n\n";
 
-                    textViewResult.append(content);
-                }
+//                    textViewResult.append(content);
+//                }
             }
 
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
-                textViewResult.setText(t.getMessage());
+                loadingDialog.dismissDialog();
+                Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//                textViewResult.setText(t.getMessage());
             }
         });
     }

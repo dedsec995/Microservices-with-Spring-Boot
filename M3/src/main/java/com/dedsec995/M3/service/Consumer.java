@@ -55,7 +55,7 @@ public class Consumer {
 		
 		if(s1.equals(s2)) {
 		
-		this.service.sendSimpleEmail("itachu.uchiha@gmail.com","Warning! you have crossed the speed limit",message.substring(0,17),speed,ts);
+		// this.service.sendSimpleEmail("itachu.uchiha@gmail.com","Warning! you have crossed the speed limit",message.substring(0,17),speed,ts);
 		}
 		
 		}

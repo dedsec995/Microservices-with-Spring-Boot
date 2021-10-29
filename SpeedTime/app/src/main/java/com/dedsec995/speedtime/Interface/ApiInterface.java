@@ -22,6 +22,6 @@ public interface ApiInterface {
     Call<Post1> createPost(@Query("vin") int vin,@Query("freq") int frequency,@Query("same") String same);
 
     @POST("my/test/")
-    Call<MaunalPost> createManualPost(@Query("vin") String vin, @Query("speed") int speed);
+    Call<MaunalPost> createManualPost(@Query("vin") String manual_vin, @Query("speed") int speed);
 
 }

@@ -5,6 +5,11 @@
     <string name="same_vin">Do you want same vin?</string>
     <string name="manual_vin">Vin Number</string>
     <string name="manual_speed">Speed</string>
+    <string name="Vin">Vin Number : \n</string>
+    <string name="Verified">Verified : \n</string>
+    <string name="Speed">Speed : \n</string>
+    <string name="Alert">Alert : \n</string>
+    <string name="TimeStamp">TimeStamp : \n</string>
     <string name="submit">Create</string>
 
     <string-array name="vin_same_select_param">
