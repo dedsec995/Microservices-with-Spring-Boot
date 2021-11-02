@@ -6,6 +6,8 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.internet.MimeMessage;
+
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,6 +21,7 @@ import com.dedsec995.M3.repository.UserRepository;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
 @RestController
 @Service
@@ -28,10 +31,11 @@ public class Consumer {
 	private UserRepository repository;
 
 	@Autowired
-	private EmailSenderService service;
+	private EmailSenderService emailSenderService;
+	
 		
 	@KafkaListener(topics="k2-topic",groupId="mygroup")
-	public void consumerFromtopic(String message) throws ParseException {
+	public void consumerFromtopic(String message) throws Exception {
 		System.out.println("consumer" + message);
 		String msg = message.substring(22);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -53,9 +57,10 @@ public class Consumer {
 		System.out.println("Done Writing");
 		
 		
-		if(s1.equals(s2)) {
+		if(s1.equals(s2) && message.substring(17,18).equals(s2)) {
 		
-		// this.service.sendSimpleEmail("itachu.uchiha@gmail.com","Warning! you have crossed the speed limit",message.substring(0,17),speed,ts);
+			this.emailSenderService.sendHTML("itachu.uchiha99@gmail.com","sunilindi0@gamil.com", "Warning!! You have Crossed the Speed", "<h2>ALERT...!!!<h2>"+"<p>Dear user you have crossed the speed limits, your vehicle is running with overspeed <br/>The Safe Speed limit was 100 km/h.<p>"+"<h2>Details: </h2>"+"<h2>Your Vin:"+message.substring(0, 17)+" </h2>"+"<h2>Speed:"+speed+" km/h</h2>"+"<h2>Date and Time:"+ts+" </h2>");
+			System.out.println("mail sent....");
 		}
 		
 		}
@@ -75,17 +80,19 @@ public class Consumer {
 class EmailSenderService 
 {
 	@Autowired
-	private JavaMailSender mailSender;
+	private JavaMailSender javaMailSender;
 
-    public void sendSimpleEmail(String toEmail,String subject,String body, int sped, Timestamp ts) 
-    {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("sunilindi0@gmail");
-        message.setTo(toEmail);
-        message.setSubject(subject);
-        message.setText("VIN:- "+body+" \nYour Speed is:- "+sped+" at Time :- "+ts);
-        mailSender.send(message);
-        System.out.println("Mail Sent...");
-    }
+
+	public void sendHTML(String toAddress, String fromAddress, String subject, String content) throws Exception {
+		// TODO Auto-generated method stub
+		MimeMessage mimeMessage=javaMailSender.createMimeMessage();
+		MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMessage);
+		mimeMessageHelper.setFrom(fromAddress);
+		mimeMessageHelper.setTo(toAddress);
+		mimeMessageHelper.setSubject(subject);
+		mimeMessageHelper.setText(content,true);
+		javaMailSender.send(mimeMessage);
 		
+	}
+	
 }

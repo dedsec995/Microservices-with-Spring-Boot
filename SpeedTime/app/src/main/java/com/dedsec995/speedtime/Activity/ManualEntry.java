@@ -43,7 +43,7 @@ public class ManualEntry extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.203:8881/")
+                .baseUrl("http://192.168.0.204:8881/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiInterface = retrofit.create(ApiInterface.class);

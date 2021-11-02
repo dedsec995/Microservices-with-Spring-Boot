@@ -43,7 +43,7 @@ public class DataPrint extends AppCompatActivity {
         //        textViewResult = findViewById(R.id.text_view_result);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.203:8878/")
+                .baseUrl("http://192.168.0.204:8878/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -51,7 +51,7 @@ public class MakeData extends AppCompatActivity implements AdapterView.OnItemSel
         frequency   = (EditText)findViewById(R.id.frequency);
         CreateData = (Button) findViewById(R.id.submit_vin_data);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.203:8880/")
+                .baseUrl("http://192.168.0.204:8880/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiInterface = retrofit.create(ApiInterface.class);

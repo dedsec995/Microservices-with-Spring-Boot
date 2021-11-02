@@ -15,6 +15,8 @@ import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
     Context context;
+    String Veri;
+    String Alt;
     private List<Post> items;
 
     public PostAdapter(Context context, List<Post> items) {
