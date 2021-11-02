@@ -29,7 +29,7 @@ public class kafkaController {
 	}
     
 
-	@PostMapping(value="/test")
+	@PostMapping(value="/manual")
     public String postBody(@RequestParam("vin") String vin,@RequestParam("speed") String speed) {
         boolean isvinaalphaNumeric;
         boolean isvinnNumeric;

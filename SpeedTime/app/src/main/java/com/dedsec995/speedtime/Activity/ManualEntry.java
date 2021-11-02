@@ -60,6 +60,8 @@ public class ManualEntry extends AppCompatActivity {
     private void sendManualData(LoadingDialog loadingDialog) {
         String m_vin= manual_vin.getText().toString();
         String manual_speed_int= manual_speed.getText().toString();
+        Toast.makeText(getApplicationContext(), m_vin, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), manual_speed_int, Toast.LENGTH_SHORT).show();
         if (m_vin.matches("")) {
             Toast.makeText(this, "You did not enter  Vin", Toast.LENGTH_SHORT).show();
             return;
