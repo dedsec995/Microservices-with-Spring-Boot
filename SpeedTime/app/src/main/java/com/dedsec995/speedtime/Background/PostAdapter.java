@@ -36,10 +36,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     public void onBindViewHolder(@androidx.annotation.NonNull PostViewHolder postViewHolder, int i) {
         Post item = items.get(i);
         postViewHolder.Display_Vin.setText(item.getVin());
-        postViewHolder.Display_Verified.setText(item.getVerified());
+        if(item.getVerified().equals("y")){
+            Veri = "Yes";
+        }
+        else{
+            Veri =  "No";
+        }
+        if(item.getAlert().equals("y")){
+            Alt = "Yes";
+        }
+        else{
+            Alt =  "No";
+        }
+        postViewHolder.Display_Verified.setText(Veri);
         String Speedy = Integer.toString(item.getSpeed());
         postViewHolder.Display_Speed.setText(Speedy);
-        postViewHolder.Display_Alert.setText(item.getAlert());
+        postViewHolder.Display_Alert.setText(Alt);
         postViewHolder.Display_TimeStamp.setText(item.getTimest().toString());
 
     }
