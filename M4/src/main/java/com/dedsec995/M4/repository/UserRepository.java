@@ -12,7 +12,7 @@ import org.springframework.data.cassandra.repository.Query;
 public interface UserRepository extends CassandraRepository<User, String> {
 	
 
-	@Query(value="SELECT * FROM Uswer WHERE vin=?0")
+	@Query(value="SELECT * FROM User WHERE vin=?0")
 	public List<User> findByvin(String vin);
 	
 	@Query(value="SELECT * FROM User WHERE verify=?0 ALLOW FILTERING")
