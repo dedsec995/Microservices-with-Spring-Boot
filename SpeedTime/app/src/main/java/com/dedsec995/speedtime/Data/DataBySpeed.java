@@ -1,12 +1,11 @@
-package com.dedsec995.speedtime.Activity;
+package com.dedsec995.speedtime.Data;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.Toast;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
+import android.widget.Toast;
 
 import com.dedsec995.speedtime.Background.LoadingDialog;
 import com.dedsec995.speedtime.Background.PostAdapter;
@@ -22,46 +21,47 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DataPrint extends AppCompatActivity {
+public class DataBySpeed extends AppCompatActivity {
     RecyclerView recyclerView;
-//    private TextView textViewResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data_print);
+        setContentView(R.layout.activity_show_all_data);
 
-        LoadingDialog loadingDialog = new LoadingDialog(DataPrint.this);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        LoadingDialog loadingDialog = new LoadingDialog(DataBySpeed.this);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_ShowAllData);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         showDAta(loadingDialog);
     }
-
     private void showDAta(LoadingDialog loadingDialog) {
         loadingDialog.startLoadingDialog();
         //        textViewResult = findViewById(R.id.text_view_result);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.204:8878/")
+                .baseUrl("http://192.168.0.204:8883/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<List<Post>> call = apiInterface.getAllUsers();
+        Call<List<Post>> call = apiInterface.getUsersbySpeed("100");
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
 
                 if (!response.isSuccessful()) {
+                    loadingDialog.dismissDialog();
+                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    DataBySpeed.super.onBackPressed();
 //                    textViewResult.setText("Code: " + response.code());
                     return;
                 }
                 loadingDialog.dismissDialog();
                 List<Post> posts = response.body();
-                recyclerView.setAdapter(new PostAdapter(DataPrint.this,posts));
+                recyclerView.setAdapter(new PostAdapter(DataBySpeed.this,posts));
 
 //                List<Post> posts = response.body();
 //

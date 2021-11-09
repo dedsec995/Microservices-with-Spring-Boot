@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".Activity.DataPrint">
+    tools:context=".Data.ShowAllData">
 
 <!--    <android.support.v4.widget.NestedScrollView-->
 <!--        android:layout_width="match_parent"-->
@@ -20,10 +20,10 @@
 <!--        -->
 
 <!--    </android.support.v4.widget.NestedScrollView>-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_ShowAllData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,12 +11,28 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.OPTIONS;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
 
     @GET("my/getAllUsers/")
     Call<List<Post>> getAllUsers();
+
+    @GET("my/getUsersbyVin/{vin}")
+    Call<List<Post>> getUsersbyVin(@Path("vin") String userVin);
+
+    @GET("my/getUsersbySpeed/{speed}")
+    Call<List<Post>> getUsersbySpeed(@Path("speed") String userSpeed);
+
+    @GET("my/getUsersbyAlert/{alert}")
+    Call<List<Post>> getUsersbyAlert(@Path("alert") String userAlert);
+
+    @GET("my/getUsersbyVerify/{verify}")
+    Call<List<Post>> getUsersbyVerify(@Path("verify") String userVerify);
+
+    @GET("my/getUsersbyTime/{timest}")
+    Call<List<Post>> getUsersbyTime(@Path("timest") String userTimest);
 
     @POST("my/pro/")
     Call<Post1> createPost(@Query("vin") int vin,@Query("freq") int frequency,@Query("same") String same);

@@ -26,13 +26,6 @@ public class KafkaController {
 	private UserRepository repository;
 
     
-    String message = "4VJDXMRYWCB164486Y100Y2021-10-24 20:15:10";
-    int len=message.length();
-    String msgdt = message.substring(22,len);
-    int sp = Integer.parseInt(message.substring(18, 21));
-    String nl = "";
-    String flg = "Y";
-    
     
 
 //    Fetching Data from Database------------------>>>>>>

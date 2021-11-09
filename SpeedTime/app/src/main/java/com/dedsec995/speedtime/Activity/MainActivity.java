@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void openDatabaseActivity() {
-        Intent intent = new Intent(this, DataPrint.class);
+        Intent intent = new Intent(this, DataQueryPrint.class);
         startActivity(intent);
     }
     public void openMakeDataActivity() {

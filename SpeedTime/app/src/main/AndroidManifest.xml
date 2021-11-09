@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SpeedTime"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activity.TableTest"
+            android:name=".Activity.DataQueryPrint"
             android:exported="false" />
         <activity
             android:name=".Activity.ManualEntry"
@@ -22,7 +22,22 @@
             android:name=".Activity.MakeData"
             android:exported="false" />
         <activity
-            android:name=".Activity.DataPrint"
+            android:name=".Data.ShowAllData"
+            android:exported="false" />
+        <activity
+            android:name=".Data.DataByVin"
+            android:exported="false" />
+        <activity
+            android:name=".Data.DataBySpeed"
+            android:exported="false" />
+        <activity
+            android:name=".Data.DataByVerified"
+            android:exported="false" />
+        <activity
+            android:name=".Data.DataByAlert"
+            android:exported="false" />
+        <activity
+            android:name=".Data.DataByTimest"
             android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"

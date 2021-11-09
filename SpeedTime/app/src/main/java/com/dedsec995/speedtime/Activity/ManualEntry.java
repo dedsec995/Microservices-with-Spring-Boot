@@ -60,8 +60,8 @@ public class ManualEntry extends AppCompatActivity {
     private void sendManualData(LoadingDialog loadingDialog) {
         String m_vin= manual_vin.getText().toString();
         String manual_speed_int= manual_speed.getText().toString();
-        Toast.makeText(getApplicationContext(), m_vin, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), manual_speed_int, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), m_vin, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), manual_speed_int, Toast.LENGTH_SHORT).show();
         if (m_vin.matches("")) {
             Toast.makeText(this, "You did not enter  Vin", Toast.LENGTH_SHORT).show();
             return;
@@ -89,15 +89,16 @@ public class ManualEntry extends AppCompatActivity {
 //                content += "Code: " + response.code() + "\n";
 //                content += "ID: " + postresponse.getVin_number() + "\n";
 //                content += "User ID: " + postresponse.getSpeed() + "\n\n";
-
-                loadingDialog.dismissDialog();
                 Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+                loadingDialog.dismissDialog();
+                ManualEntry.super.onBackPressed();
             }
 
             @Override
             public void onFailure(Call<MaunalPost> call, Throwable t) {
                 loadingDialog.dismissDialog();
-                Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+                ManualEntry.super.onBackPressed();
             }
         });
     }
