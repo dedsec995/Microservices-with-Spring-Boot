@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SpeedTime"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.TableTest"
+            android:exported="false" />
+        <activity
             android:name=".Activity.ManualEntry"
             android:exported="false" />
         <activity

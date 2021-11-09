@@ -40,11 +40,13 @@ public class kafkaController {
         String strDate=dateFormat.format(ts);
         char verify = 'n';
         char alert = 'n';
+        int sp=Integer.parseInt(speed);
+
         if(vin.isEmpty() || speed.isEmpty()){
             return "Data is empty";
         }
-        if(vin.length()!=17 || speed.length()!= 3){
-            return "Data is not of appropriate size";
+        if(vin.length()!=17 || speed.length()!= 3 || sp<0){
+            return "Data is not appropriate";
         }
         String vina = vin.substring(0,10);
         String vinn = vin.substring(11,16);

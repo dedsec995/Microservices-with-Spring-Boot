@@ -17,8 +17,9 @@ public class Consumer {
 
         String msg=message.substring(0, 20);
         String dateTime=message.substring(20);
-
-        if(msg.length() != 20) {
+        
+        int speed1 = Integer.parseInt(message.substring(17, 20));
+        if(msg.length() != 20 || speed1<0) {
 	    	return 0;
 	    }
 	    
@@ -34,9 +35,9 @@ public class Consumer {
 		isvinaalphaNumeric = vina.matches("^[a-zA-Z0-9]*$");
         isvinnNumeric = vinn.matches("^[0-9]*$");
         isNumeric = speed.matches("^[0-9]*$");
- 	   
- 	   if(isvinaalphaNumeric && isNumeric && isvinnNumeric) {
-            if(Integer.parseInt(speed)>100){
+        
+ 	   if(isvinaalphaNumeric && isNumeric && isvinnNumeric ) {
+            if(Integer.parseInt(speed)>100 ){
                 alert = 'y';
                 verify = 'y';
                 producer.publishToTopic(vin+verify+speed+alert+dateTime);
@@ -54,6 +55,7 @@ public class Consumer {
                 producer.publishToTopic(vin+verify+speed+alert+dateTime);
             }
 			else{
+                
                 verify = 'n';
 				alert ='n';
                 producer.publishToTopic(vin+verify+speed+alert+dateTime);

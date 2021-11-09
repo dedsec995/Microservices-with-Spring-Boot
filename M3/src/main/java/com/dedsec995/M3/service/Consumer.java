@@ -10,7 +10,6 @@ import javax.mail.internet.MimeMessage;
 
 import java.util.Date;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
 
@@ -19,7 +18,6 @@ import com.dedsec995.M3.model.User;
 import com.dedsec995.M3.repository.UserRepository;
 
 
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
@@ -41,6 +39,10 @@ public class Consumer {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = df.parse(msg);
         long time = date.getTime();
+		String[] emailIds = new String[3];
+		emailIds[0] = "beyouabde@gmail.com";
+		emailIds[1] = "sunilindi@tataelxsi.co.in";
+		emailIds[2] = "sunilindi0@gmail.com";
 
         Timestamp ts = new Timestamp(time);
 		int speed = Integer.parseInt(message.substring(18, 21));
@@ -58,8 +60,10 @@ public class Consumer {
 		
 		
 		if(s1.equals(s2) && message.substring(17,18).equals(s2)) {
+
+	
 		
-			this.emailSenderService.sendHTML("itachu.uchiha99@gmail.com","sunilindi0@gamil.com", "Warning!! You have Crossed the Speed", "<h2>ALERT...!!!<h2>"+"<p>Dear user you have crossed the speed limits, your vehicle is running with overspeed <br/>The Safe Speed limit was 100 km/h.<p>"+"<h2>Details: </h2>"+"<h2>Your Vin:"+message.substring(0, 17)+" </h2>"+"<h2>Speed:"+speed+" km/h</h2>"+"<h2>Date and Time:"+ts+" </h2>");
+			this.emailSenderService.sendHTML(emailIds,"sunilindi0@gamil.com", "Warning!! You have Crossed the Speed", "<h2>ALERT...!!!<h2>"+"<p>Dear user you have crossed the speed limits, your vehicle is running with overspeed <br/>The Safe Speed limit was 100 km/h.<p>"+"<h2>Details: </h2>"+"<h2>Your Vin:"+message.substring(0, 17)+" </h2>"+"<h2>Speed:"+speed+" km/h</h2>"+"<h2>Date and Time:"+ts+" </h2>");
 			System.out.println("mail sent....");
 		}
 		
@@ -83,7 +87,7 @@ class EmailSenderService
 	private JavaMailSender javaMailSender;
 
 
-	public void sendHTML(String toAddress, String fromAddress, String subject, String content) throws Exception {
+	public void sendHTML(String[] toAddress, String fromAddress, String subject, String content) throws Exception {
 		// TODO Auto-generated method stub
 		MimeMessage mimeMessage=javaMailSender.createMimeMessage();
 		MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMessage);
