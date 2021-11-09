@@ -108,7 +108,7 @@ CREATE TABLE User(
     speed int,
     alert text,
     timest Timestamp,
-    PRIMARY KEY(timest,vin),
+    PRIMARY KEY(vin,timest),
 );
 ```
 To view the data
@@ -134,7 +134,7 @@ CREATE TABLE User(
     speed int,
     alert text,
     timest Timestamp,
-    PRIMARY KEY(timest,vin),
+    PRIMARY KEY(vin,timest),
 );
 ```
 To view the data
