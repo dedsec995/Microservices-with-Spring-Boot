@@ -49,7 +49,7 @@ public class ShowAllData extends AppCompatActivity {
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<List<Post>> call = apiInterface.getUsersbySpeed("100");
+        Call<List<Post>> call = apiInterface.getAllUsers();
 
         call.enqueue(new Callback<List<Post>>() {
             @Override

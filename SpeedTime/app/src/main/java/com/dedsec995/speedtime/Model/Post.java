@@ -34,7 +34,12 @@ public class Post {
     }
 
     public String getVerified() {
-        return verified;
+        if (this.verified.equals("y")){
+            return "Yes";
+        }
+        else{
+            return "No";
+        }
     }
 
     public void setVerified(String verified) {
@@ -50,7 +55,12 @@ public class Post {
     }
 
     public String getAlert() {
-        return alert;
+        if (this.alert.equals("y")){
+            return "Yes";
+        }
+        else{
+            return "No";
+        }
     }
 
     public void setAlert(String alert) {

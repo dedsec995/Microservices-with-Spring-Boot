@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class User implements Comparable<User>{
 	
 	public String vin;	
-	public String verify;
+	public String verified;
 	public int speed;
 	public String alert;
 	@PrimaryKey
@@ -54,11 +54,11 @@ public class User implements Comparable<User>{
 //		this.v_speed = v_speed;
 //	}
 	
-	public User(String vin, String verify, int speed, String alert, Timestamp timest)
+	public User(String vin, String verified, int speed, String alert, Timestamp timest)
 	{
 		this.timest =timest;
 		this.vin = vin;
-		this.verify = verify;
+		this.verified = verified;
 		this.speed = speed;
 		this.alert = alert;
 	}
@@ -73,12 +73,12 @@ public class User implements Comparable<User>{
 		this.vin = vin;
 	}
 
-	public String getVerify() {
-		return verify;
+	public String getVerified() {
+		return verified;
 	}
 
-	public void setVerify(String verify) {
-		this.verify = verify;
+	public void setVerified(String verified) {
+		this.verified = verified;
 	}
 
 	public int getSpeed() {
@@ -107,8 +107,8 @@ public class User implements Comparable<User>{
 
 	@Override
 	public String toString() {
-		//return String.format("VIN=%s, Verified='%s', Speed='%sd', Alert=%s, Time=", this.vin, this.verify, this.speed, this.alert, +this.timest);
-		return String.format("VIN= "+this.vin+" Verified= "+this.verify+" Speed= "+this.speed+" Alert= "+this.alert+" Time= "+this.timest);
+		//return String.format("VIN=%s, Verified='%s', Speed='%sd', Alert=%s, Time=", this.vin, this.verified, this.speed, this.alert, +this.timest);
+		return String.format("VIN= "+this.vin+" Verified= "+this.verified+" Speed= "+this.speed+" Alert= "+this.alert+" Time= "+this.timest);
 	}
 
 	@Override

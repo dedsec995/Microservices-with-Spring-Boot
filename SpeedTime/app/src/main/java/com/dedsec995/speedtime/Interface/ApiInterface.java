@@ -22,13 +22,13 @@ public interface ApiInterface {
     @GET("my/getUsersbyVin/{vin}")
     Call<List<Post>> getUsersbyVin(@Path("vin") String userVin);
 
-    @GET("my/getUsersbySpeed/{speed}")
-    Call<List<Post>> getUsersbySpeed(@Path("speed") String userSpeed);
+    @GET("my/getbySpeedbetween/{speed}/{speed2}")
+    Call<List<Post>> getUsersbySpeed(@Path("speed") String userSpeed,@Path("speed2") String userSpeed2);
 
     @GET("my/getUsersbyAlert/{alert}")
     Call<List<Post>> getUsersbyAlert(@Path("alert") String userAlert);
 
-    @GET("my/getUsersbyVerify/{verify}")
+    @GET("my/getUsersbyVerified/{verify}")
     Call<List<Post>> getUsersbyVerify(@Path("verify") String userVerify);
 
     @GET("my/getUsersbyTime/{timest}")

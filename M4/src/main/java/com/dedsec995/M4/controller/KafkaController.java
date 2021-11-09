@@ -91,11 +91,11 @@ public class KafkaController {
 		return data;
 	}	
 	
-//  Fetching User Data for Verify Message----------------------->	
-	@GetMapping("/getUsersbyVerify/{verify}")
-	public List<User> getUsersbyVerify(@PathVariable String verify) {
+//  Fetching User Data for Verified Message----------------------->	
+	@GetMapping("/getUsersbyVerified/{verified}")
+	public List<User> getUsersbyVerified(@PathVariable String verified) {
 		
-		List<User> data = repository.findbyVerify(verify);
+		List<User> data = repository.findbyVerified(verified);
 		Collections.sort(data);	
 		
 		for(User datas: data)
@@ -106,7 +106,7 @@ public class KafkaController {
 		return data;
 	}
 		
-//  Fetching User Data for Verify Message----------------------->	
+//  Fetching User Data for Verified Message----------------------->	
 	@GetMapping("/getUsersbyTime/{timest}")
 	public List<User> getUsersbyTime(@PathVariable Timestamp timest) {
 		
@@ -120,6 +120,22 @@ public class KafkaController {
 		
 		return data;
 	}			
+
+
+	//  Fetching User Data between Speed Range----------------------->   
+    @GetMapping("/getbySpeedbetween/{speed}/{speed2}")
+    public List<User> findBySpeedBetween(@PathVariable int speed, @PathVariable int speed2) {
+
+        List<User> data = repository.findBySpeedBetween(speed,speed2);
+        Collections.sort(data);   
+
+        for(User datas: data)
+        {
+            System.out.println(datas);
+        }
+
+        return data;
+    }
 		
 	
 	

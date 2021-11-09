@@ -15,8 +15,8 @@ public interface UserRepository extends CassandraRepository<User, String> {
 	@Query(value="SELECT * FROM User WHERE vin=?0")
 	public List<User> findByvin(String vin);
 	
-	@Query(value="SELECT * FROM User WHERE verify=?0 ALLOW FILTERING")
-	public List<User> findbyVerify(String verify);
+	@Query(value="SELECT * FROM User WHERE verified=?0 ALLOW FILTERING")
+	public List<User> findbyVerified(String verified);
 	
 	@AllowFiltering
 	public List<User> findBySpeedGreaterThan(int speed);
@@ -26,5 +26,8 @@ public interface UserRepository extends CassandraRepository<User, String> {
 	
 	@Query(value="SELECT * FROM User WHERE timest=?0 ALLOW FILTERING")
 	public List<User> findbyTimeStamp(Timestamp timest);
+
+	@AllowFiltering
+    public List<User> findBySpeedBetween(int speed, int speed2);
 	
 }

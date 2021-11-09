@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -28,14 +29,16 @@ public class DataByVin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_data);
+        Intent intent = getIntent();
+        String s_vin = intent.getStringExtra("s_vin");
 
         LoadingDialog loadingDialog = new LoadingDialog(DataByVin.this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_ShowAllData);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        showDAta(loadingDialog);
+        showDAta(loadingDialog,s_vin);
     }
-    private void showDAta(LoadingDialog loadingDialog) {
+    private void showDAta(LoadingDialog loadingDialog,String s_vin) {
         loadingDialog.startLoadingDialog();
         //        textViewResult = findViewById(R.id.text_view_result);
 
@@ -46,15 +49,15 @@ public class DataByVin extends AppCompatActivity {
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<List<Post>> call = apiInterface.getUsersbyVin("QWERTYUIOPASDFGHJ");
+        Call<List<Post>> call = apiInterface.getUsersbyVin(s_vin);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
 
-                if (!response.isSuccessful()) {
+                if (!response.isSuccessful() || response.body().isEmpty()) {
                     loadingDialog.dismissDialog();
-                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Data Not Present", Toast.LENGTH_SHORT).show();
                     DataByVin.super.onBackPressed();
 //                    textViewResult.setText("Code: " + response.code());
                     return;

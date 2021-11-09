@@ -13,6 +13,21 @@
         android:theme="@style/Theme.SpeedTime"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".BeforeData.BeforeTimestData"
+            android:exported="false" />
+        <activity
+            android:name=".BeforeData.BeforeAlertData"
+            android:exported="false" />
+        <activity
+            android:name=".BeforeData.BeforeVerifiedData"
+            android:exported="false" />
+        <activity
+            android:name=".BeforeData.BeforeSpeedData"
+            android:exported="false" />
+        <activity
+            android:name=".BeforeData.BeforeVinData"
+            android:exported="false" />
+        <activity
             android:name=".Activity.DataQueryPrint"
             android:exported="false" />
         <activity

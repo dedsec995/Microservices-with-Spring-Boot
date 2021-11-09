@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/topview_Before_vin_Data"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/ontopview_Before_vin_Data"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_manual_wave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topview_Before_vin_Data" />
+
+
+
+    <View
+        android:id="@+id/bottom_view_Before_vin_Data"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_manual_wave_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TopText_Manual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Enter the Vin to be searched"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/topview_Before_vin_Data"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="@+id/topview_Before_vin_Data"
+        app:layout_constraintTop_toTopOf="@+id/topview_Before_vin_Data" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Layout_search_vin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/manual_vin"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ontopview_Before_vin_Data">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_vin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/search_vin_button"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="45dp"
+        android:text="Search"
+        app:cornerRadius="100dp"
+        app:layout_constraintEnd_toEndOf="@+id/topview_Before_vin_Data"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/topview_Before_vin_Data"
+        app:layout_constraintTop_toBottomOf="@+id/Layout_search_vin" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

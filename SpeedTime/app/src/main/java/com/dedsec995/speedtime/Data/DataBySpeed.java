@@ -46,7 +46,7 @@ public class DataBySpeed extends AppCompatActivity {
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<List<Post>> call = apiInterface.getUsersbySpeed("100");
+        Call<List<Post>> call = apiInterface.getUsersbySpeed("200","300");
 
         call.enqueue(new Callback<List<Post>>() {
             @Override

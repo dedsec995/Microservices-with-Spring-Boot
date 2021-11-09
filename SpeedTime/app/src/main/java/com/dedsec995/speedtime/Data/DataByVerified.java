@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -29,13 +30,16 @@ public class DataByVerified extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_data);
 
+        Intent intent = getIntent();
+        String search_verified_string = intent.getStringExtra("search_verified_string");
+
         LoadingDialog loadingDialog = new LoadingDialog(DataByVerified.this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_ShowAllData);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        showDAta(loadingDialog);
+        showDAta(loadingDialog,search_verified_string);
     }
-    private void showDAta(LoadingDialog loadingDialog) {
+    private void showDAta(LoadingDialog loadingDialog,String search_verified_string) {
         loadingDialog.startLoadingDialog();
         //        textViewResult = findViewById(R.id.text_view_result);
 
@@ -43,20 +47,29 @@ public class DataByVerified extends AppCompatActivity {
                 .baseUrl("http://192.168.0.204:8883/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+        String search_ver_string = "n";
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-
-        Call<List<Post>> call = apiInterface.getUsersbyVerify("y");
+        if(search_verified_string.equals("Yes")){
+            search_ver_string = "y";
+        }
+        else if (search_verified_string.equals("No")){
+            search_ver_string = "n";
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
+            super.onBackPressed();
+        }
+        Call<List<Post>> call = apiInterface.getUsersbyVerify(search_ver_string);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
 
                 if (!response.isSuccessful()) {
+//                    textViewResult.setText("Code: " + response.code());
                     loadingDialog.dismissDialog();
                     Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
                     DataByVerified.super.onBackPressed();
-//                    textViewResult.setText("Code: " + response.code());
                     return;
                 }
                 loadingDialog.dismissDialog();

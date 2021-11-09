@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -29,13 +30,16 @@ public class DataByAlert extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_data);
 
+        Intent intent = getIntent();
+        String search_alert_string = intent.getStringExtra("search_alert_string");
+
         LoadingDialog loadingDialog = new LoadingDialog(DataByAlert.this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_ShowAllData);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        showDAta(loadingDialog);
+        showDAta(loadingDialog,search_alert_string);
     }
-    private void showDAta(LoadingDialog loadingDialog) {
+    private void showDAta(LoadingDialog loadingDialog,String search_alert_string) {
         loadingDialog.startLoadingDialog();
         //        textViewResult = findViewById(R.id.text_view_result);
 
@@ -45,8 +49,19 @@ public class DataByAlert extends AppCompatActivity {
                 .build();
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+        String search_alt_string = "n";
+        if(search_alert_string.equals("Yes")){
+            search_alt_string = "y";
+        }
+        else if (search_alert_string.equals("No")){
+            search_alt_string = "n";
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
+            super.onBackPressed();
+        }
 
-        Call<List<Post>> call = apiInterface.getUsersbyAlert("y");
+        Call<List<Post>> call = apiInterface.getUsersbyAlert(search_alt_string);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override

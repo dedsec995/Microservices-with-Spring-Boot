@@ -46,7 +46,7 @@ public class DataByTimest extends AppCompatActivity {
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<List<Post>> call = apiInterface.getUsersbyTime("2021-11-02T13:55:10.000+00:00");
+        Call<List<Post>> call = apiInterface.getUsersbyTime("2021-11-09 12:40:50.0");
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
