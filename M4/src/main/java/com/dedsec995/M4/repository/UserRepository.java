@@ -29,5 +29,8 @@ public interface UserRepository extends CassandraRepository<User, String> {
 
 	@AllowFiltering
     public List<User> findBySpeedBetween(int speed, int speed2);
+
+	@AllowFiltering
+	public List<User> findByTimestBetween(Timestamp timest, Timestamp timest2);	
 	
 }

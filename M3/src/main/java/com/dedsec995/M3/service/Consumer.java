@@ -39,10 +39,11 @@ public class Consumer {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = df.parse(msg);
         long time = date.getTime();
-		String[] emailIds = new String[3];
+		String[] emailIds = new String[4];
 		emailIds[0] = "beyouabde@gmail.com";
 		emailIds[1] = "sunilindi@tataelxsi.co.in";
 		emailIds[2] = "sunilindi0@gmail.com";
+		emailIds[3] = "itachu.uchiha99@gmail.com";
 
         Timestamp ts = new Timestamp(time);
 		int speed = Integer.parseInt(message.substring(18, 21));

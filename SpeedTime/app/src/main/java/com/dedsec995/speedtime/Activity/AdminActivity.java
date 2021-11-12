@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.dedsec995.speedtime.R;
 
-public class MainActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
     private Button DataBase;
     private Button MakeData;
     private Button ManualEntry;

@@ -3,7 +3,143 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".BeforeData.BeforeSpeedData">
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/topview_Before_speed_Data"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/ontopview_Before_speed_Data"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_manual_wave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topview_Before_speed_Data" />
+
+
+
+    <View
+        android:id="@+id/bottom_view_Before_speed_Data"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_manual_wave_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TopText_Manual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Enter the Range of Speed"
+        android:textColor="@color/white"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/topview_Before_speed_Data"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="@+id/topview_Before_speed_Data"
+        app:layout_constraintTop_toTopOf="@+id/topview_Before_speed_Data" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Layout_search_speed_range_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ontopview_Before_speed_Data">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_speed_range_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Layout_search_speed_range_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxBackgroundMode="filled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ontopview_Before_speed_Data">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_speed_range_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/search_speed_button"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="224dp"
+        android:text="Search"
+        app:cornerRadius="100dp"
+        app:layout_constraintEnd_toEndOf="@+id/topview_Before_speed_Data"
+        app:layout_constraintStart_toStartOf="@+id/topview_Before_speed_Data"
+        app:layout_constraintTop_toBottomOf="@+id/ontopview_Before_speed_Data" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Between"
+        app:layout_constraintEnd_toStartOf="@+id/Layout_search_speed_range_2"
+        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintStart_toEndOf="@+id/Layout_search_speed_range_1"
+        app:layout_constraintTop_toBottomOf="@+id/ontopview_Before_speed_Data" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Min Speed"
+        app:layout_constraintBottom_toTopOf="@+id/Layout_search_speed_range_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ontopview_Before_speed_Data"
+        app:layout_constraintVertical_bias="0.476" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Max Speed"
+        app:layout_constraintBottom_toTopOf="@+id/Layout_search_speed_range_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.793"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ontopview_Before_speed_Data"
+        app:layout_constraintVertical_bias="0.476" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

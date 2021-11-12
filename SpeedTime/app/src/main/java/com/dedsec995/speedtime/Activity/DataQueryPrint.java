@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.dedsec995.speedtime.BeforeData.BeforeAlertData;
+import com.dedsec995.speedtime.BeforeData.BeforeSpeedData;
+import com.dedsec995.speedtime.BeforeData.BeforeTimestData;
 import com.dedsec995.speedtime.BeforeData.BeforeVerifiedData;
 import com.dedsec995.speedtime.BeforeData.BeforeVinData;
 import com.dedsec995.speedtime.Data.DataByAlert;
@@ -89,7 +91,7 @@ public class DataQueryPrint extends AppCompatActivity {
         startActivity(intent);
     }
     public void opengetDataBySpeed() {
-        Intent intent = new Intent(this, DataBySpeed.class);
+        Intent intent = new Intent(this, BeforeSpeedData.class);
         startActivity(intent);
     }
     public void opengetDataByVerified() {
@@ -101,7 +103,7 @@ public class DataQueryPrint extends AppCompatActivity {
         startActivity(intent);
     }
     public void opengetDataByTimest() {
-        Intent intent = new Intent(this, DataByTimest.class);
+        Intent intent = new Intent(this, BeforeTimestData.class);
         startActivity(intent);
     }
 }

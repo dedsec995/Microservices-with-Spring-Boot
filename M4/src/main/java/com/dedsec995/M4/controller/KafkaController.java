@@ -35,7 +35,7 @@ public class KafkaController {
 	public List<User> getUsers() {
 		
 		List<User> data = repository.findAll();		
-		Collections.sort(data);
+		Collections.sort(data,Collections.reverseOrder());
 		
 		for(User datas: data)
 		{
@@ -51,7 +51,7 @@ public class KafkaController {
 	public List<User> getUsersbyvin(@PathVariable String vin) {
 		
 		List<User> data = repository.findByvin(vin);
-		Collections.sort(data);	
+		Collections.sort(data,Collections.reverseOrder());	
 		
 		for(User datas: data)
 		{
@@ -65,7 +65,7 @@ public class KafkaController {
 	public List<User> getUsersbySpeed(@PathVariable int speed) {
 		
 		List<User> data = repository.findBySpeedGreaterThan(speed);
-		Collections.sort(data);	
+		Collections.sort(data,Collections.reverseOrder());	
 		
 		for(User datas: data)
 		{
@@ -81,7 +81,7 @@ public class KafkaController {
 	public List<User> getUsersbyAlert(@PathVariable String alert) {
 		
 		List<User> data = repository.findbyAlert(alert);
-		Collections.sort(data);	
+		Collections.sort(data,Collections.reverseOrder());	
 		
 		for(User datas: data)
 		{
@@ -96,7 +96,7 @@ public class KafkaController {
 	public List<User> getUsersbyVerified(@PathVariable String verified) {
 		
 		List<User> data = repository.findbyVerified(verified);
-		Collections.sort(data);	
+		Collections.sort(data,Collections.reverseOrder());	
 		
 		for(User datas: data)
 		{
@@ -106,20 +106,23 @@ public class KafkaController {
 		return data;
 	}
 		
-//  Fetching User Data for Verified Message----------------------->	
-	@GetMapping("/getUsersbyTime/{timest}")
-	public List<User> getUsersbyTime(@PathVariable Timestamp timest) {
-		
-		List<User> data = repository.findbyTimeStamp(timest);
-		Collections.sort(data);	
-		
-		for(User datas: data)
-		{
-			System.out.println(datas);
-		}
-		
-		return data;
-	}			
+	// Fetching User Data between Time Range----------------------->
+	@GetMapping("/getbyTimebetween/{timest}/{timest2}")
+	public List<User> findByTimestBetween(@PathVariable Timestamp timest, @PathVariable Timestamp timest2) {
+
+	List<User> data = repository.findByTimestBetween(timest,timest2);
+	// Collections.sort(data);
+	// Collections.reverse(data);
+
+	Collections.sort(data,Collections.reverseOrder());
+
+	for(User datas: data)
+	{
+	System.out.println(datas);
+	}
+
+	return data;
+	}		
 
 
 	//  Fetching User Data between Speed Range----------------------->   
@@ -127,7 +130,7 @@ public class KafkaController {
     public List<User> findBySpeedBetween(@PathVariable int speed, @PathVariable int speed2) {
 
         List<User> data = repository.findBySpeedBetween(speed,speed2);
-        Collections.sort(data);   
+        Collections.sort(data,Collections.reverseOrder());   
 
         for(User datas: data)
         {

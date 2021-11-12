@@ -34,6 +34,9 @@ public interface ApiInterface {
     @GET("my/getUsersbyTime/{timest}")
     Call<List<Post>> getUsersbyTime(@Path("timest") String userTimest);
 
+    @GET("my/getbyTimebetween/{timest1}/{timest2}")
+    Call<List<Post>> getUsersBetweenTime(@Path("timest1") String userTimest1,@Path("timest2") String userTimest2);
+
     @POST("my/pro/")
     Call<Post1> createPost(@Query("vin") int vin,@Query("freq") int frequency,@Query("same") String same);
 

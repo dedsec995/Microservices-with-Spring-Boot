@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -29,13 +30,19 @@ public class DataByTimest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_data);
 
+        Intent intent = getIntent();
+        String selected_timest = intent.getStringExtra("selected_timest");
+
+
         LoadingDialog loadingDialog = new LoadingDialog(DataByTimest.this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_ShowAllData);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        showDAta(loadingDialog);
+        showDAta(loadingDialog,selected_timest);
     }
-    private void showDAta(LoadingDialog loadingDialog) {
+    private void showDAta(LoadingDialog loadingDialog, String selected_timest) {
+        String Date1 = selected_timest + " 00:00:00.0";
+        String Date2 = selected_timest + " 23:59:59.0";
         loadingDialog.startLoadingDialog();
         //        textViewResult = findViewById(R.id.text_view_result);
 
@@ -46,7 +53,7 @@ public class DataByTimest extends AppCompatActivity {
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<List<Post>> call = apiInterface.getUsersbyTime("2021-11-09 12:40:50.0");
+        Call<List<Post>> call = apiInterface.getUsersBetweenTime(Date1,Date2);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
@@ -54,7 +61,7 @@ public class DataByTimest extends AppCompatActivity {
 
                 if (!response.isSuccessful()) {
                     loadingDialog.dismissDialog();
-                    Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Record Not Found", Toast.LENGTH_SHORT).show();
                     DataByTimest.super.onBackPressed();
 //                    textViewResult.setText("Code: " + response.code());
                     return;
