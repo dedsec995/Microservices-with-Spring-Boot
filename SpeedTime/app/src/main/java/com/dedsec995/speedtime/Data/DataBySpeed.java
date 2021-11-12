@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -29,13 +30,17 @@ public class DataBySpeed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all_data);
 
+        Intent intent = getIntent();
+        String speed_range_1 = intent.getStringExtra("speed_range_1");
+        String speed_range_2 = intent.getStringExtra("speed_range_2");
+
         LoadingDialog loadingDialog = new LoadingDialog(DataBySpeed.this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_ShowAllData);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        showDAta(loadingDialog);
+        showDAta(loadingDialog,speed_range_1,speed_range_2);
     }
-    private void showDAta(LoadingDialog loadingDialog) {
+    private void showDAta(LoadingDialog loadingDialog,String speed_range_1,String speed_range_2) {
         loadingDialog.startLoadingDialog();
         //        textViewResult = findViewById(R.id.text_view_result);
 
@@ -46,7 +51,7 @@ public class DataBySpeed extends AppCompatActivity {
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<List<Post>> call = apiInterface.getUsersbySpeed("200","300");
+        Call<List<Post>> call = apiInterface.getUsersbySpeed(speed_range_1,speed_range_2);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
