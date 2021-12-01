@@ -86,6 +86,7 @@ public class DataBySpeed extends AppCompatActivity {
             public void onFailure(Call<List<Post>> call, Throwable t) {
                 loadingDialog.dismissDialog();
                 Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                onBackPressed();
 //                textViewResult.setText(t.getMessage());
             }
         });

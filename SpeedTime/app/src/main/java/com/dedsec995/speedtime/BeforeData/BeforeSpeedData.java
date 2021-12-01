@@ -48,8 +48,8 @@ public class BeforeSpeedData extends AppCompatActivity {
             return;
         }
         Intent intent = new Intent(this, DataBySpeed.class);
-        intent.putExtra("search_speed_range_1", speed_range_1);
-        intent.putExtra("search_speed_range_2", speed_range_2);
+        intent.putExtra("speed_range_1", speed_range_1);
+        intent.putExtra("speed_range_2", speed_range_2);
         startActivity(intent);
     }
 }
