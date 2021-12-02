@@ -29,9 +29,10 @@ public class M1Application {
 
 
 
-		Scanner sc = new Scanner(System.in);
-		System.out.println("How many vin need to be generated: ");
-		int input = sc.nextInt();
+		// Scanner sc = new Scanner(System.in);
+		// System.out.println("How many vin need to be generated: ");
+		// int input = sc.nextInt();
+		int input = 10;
 		for(int a=1; a<=input ; a++) {
 		
 		int n = 20;
