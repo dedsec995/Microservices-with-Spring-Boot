@@ -21,40 +21,73 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_CREATE_TOPICS: "k1-topic:1:1"
       KAFKA_CREATE_TOPICS: "k2-topic:1:1"
+    restart: always
 
   
   cassandradb:
     image: cassandra
     container_name: cassandradb
     ports:
-      - "29042:9042"
+      - "9042:9042"
     environment:
       - CASSANDRA_HOST=cassandradb
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0
 
-  # m1application:
+  # cassandra:
+  #   container_name: cassandra
+  #   image: cassandra:3.9
+  #   # volumes:
+  #   #     - /path/of/host/for/cassandra/:/var/lib/cassandra/
   #   ports:
-  #     - "8880:8880"
-  #   build:
-  #     context: M1
-  #     args:
-  #       JAR_FILE: /M1/target/M1Application.jar
+  #       - 7000:7000
+  #       - 7001:7001
+  #       - 7199:7199
+  #       - 9042:9042
+  #       - 9160:9160
   #   environment:
-  #     SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
-  #   depends_on:
-  #     - kafka
+  #       - CASSANDRA_CLUSTER_NAME='cassandra-cluster'
+  #       - CASSANDRA_NUM_TOKENS=256
+  #       - CASSANDRA_RPC_ADDRESS=0.0.0.0
+    # restart: always
+
+
+#   cassandra:
+#     image: docker.io/bitnami/cassandra:latest
+#     ports:
+#       - '7000:7000'
+#       - '9042:9042'
+#     environment:
+#       - CASSANDRA_SEEDS=cassandra
+#       # - CASSANDRA_PASSWORD_SEEDER=yes
+#       - CASSANDRA_HOST=cassandradb
+# #      - CASSANDRA_USERNAME=user
+# #      - CASSANDRA_PASSWORD=pass123
+#       # - CASSANDRA_CFG_RACKDC_PREFER_LOCAL=true
+
+  m1application:
+    ports:
+      - "8880:8880"
+    build:
+      context: M1
+      args:
+        JAR_FILE: /M1/target/M1Application.jar
+    environment:
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+    depends_on:
+      - kafka
 
   
-  # m2application:
-  #   ports:
-  #     - "8881:8881"
-  #   build:
-  #     context: M2
-  #     args:
-  #       JAR_FILE: /M2/target/M2Application.jar
-  #   environment:
-  #     SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
-  #   depends_on:
-  #     - kafka
+  m2application:
+    ports:
+      - "8881:8881"
+    build:
+      context: M2
+      args:
+        JAR_FILE: /M2/target/M2Application.jar
+    environment:
+      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+    depends_on:
+      - kafka
 
   m3application:
     ports:
@@ -68,16 +101,15 @@ services:
     depends_on:
       - kafka
       - cassandradb
+    restart: always
   
-  # m4application:
-  #   ports:
-  #     - "8883:8883"
-  #   build:
-  #     context: M4
-  #     args:
-  #       JAR_FILE: /M4/target/MApplication.jar
-  #   environment:
-  #     SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
-  #   depends_on:
-  #     - kafka
-  #     - cassandradb
+  m4application:
+    ports:
+      - "8883:8883"
+    build:
+      context: M4
+      args:
+        JAR_FILE: /M4/target/MApplication.jar
+    depends_on:
+      - cassandradb
+    restart: always
