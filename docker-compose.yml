@@ -25,34 +25,36 @@ services:
   
   cassandradb:
     image: cassandra
-    container_name: mycassandra
+    container_name: cassandradb
     ports:
-      - "9042:9042"
-
-  m1application:
-    ports:
-      - "8880:8880"
-    build:
-      context: M1
-      args:
-        JAR_FILE: /M1/target/M1Application.jar
+      - "29042:9042"
     environment:
-      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
-    depends_on:
-      - kafka
+      - CASSANDRA_HOST=cassandradb
+
+  # m1application:
+  #   ports:
+  #     - "8880:8880"
+  #   build:
+  #     context: M1
+  #     args:
+  #       JAR_FILE: /M1/target/M1Application.jar
+  #   environment:
+  #     SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+  #   depends_on:
+  #     - kafka
 
   
-  m2application:
-    ports:
-      - "8881:8881"
-    build:
-      context: M2
-      args:
-        JAR_FILE: /M2/target/M2Application.jar
-    environment:
-      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
-    depends_on:
-      - kafka
+  # m2application:
+  #   ports:
+  #     - "8881:8881"
+  #   build:
+  #     context: M2
+  #     args:
+  #       JAR_FILE: /M2/target/M2Application.jar
+  #   environment:
+  #     SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+  #   depends_on:
+  #     - kafka
 
   m3application:
     ports:
@@ -65,17 +67,17 @@ services:
       SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
     depends_on:
       - kafka
-      - cassandra
+      - cassandradb
   
-  m4application:
-    ports:
-      - "8883:8883"
-    build:
-      context: M4
-      args:
-        JAR_FILE: /M4/target/MApplication.jar
-    environment:
-      SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
-    depends_on:
-      - kafka
-      - cassandra
+  # m4application:
+  #   ports:
+  #     - "8883:8883"
+  #   build:
+  #     context: M4
+  #     args:
+  #       JAR_FILE: /M4/target/MApplication.jar
+  #   environment:
+  #     SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+  #   depends_on:
+  #     - kafka
+  #     - cassandradb
