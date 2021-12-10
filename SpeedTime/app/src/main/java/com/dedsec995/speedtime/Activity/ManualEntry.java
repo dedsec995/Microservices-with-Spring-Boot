@@ -33,7 +33,7 @@ public class ManualEntry extends AppCompatActivity {
         LoadingDialog loadingDialog = new LoadingDialog(ManualEntry.this);
         manual_vin = (EditText)findViewById(R.id.manual_vin);
         manual_speed   = (EditText)findViewById(R.id.manual_speed);
-        CreateData = (Button) findViewById(R.id.submit_vin_data);
+        CreateData = (Button) findViewById(R.id.submit_manual_data);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.203:8881/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -48,7 +48,7 @@ public class ManualEntry extends AppCompatActivity {
         });
     }
     private void createPost(LoadingDialog loadingDialog) {
-        String m_vin= manual_vin    .getText().toString();
+        String m_vin= manual_vin.getText().toString();
         String manual_speed_int= manual_speed.getText().toString();
         if (m_vin.matches("")) {
             Toast.makeText(this, "You did not enter  No. of Vin", Toast.LENGTH_SHORT).show();
