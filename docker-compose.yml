@@ -1,13 +1,13 @@
 version: '2'
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:latest
+    image: confluentinc/cp-zookeeper:7.0.0
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
-    image: confluentinc/cp-kafka:latest
+    image: confluentinc/cp-kafka:7.0.0
     depends_on:
       - zookeeper
     ports:
@@ -21,7 +21,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_CREATE_TOPICS: "k1-topic:1:1"
       KAFKA_CREATE_TOPICS: "k2-topic:1:1"
-    restart: always
+    # restart: always
 
   
   cassandradb:
@@ -48,7 +48,7 @@ services:
   #       - CASSANDRA_CLUSTER_NAME='cassandra-cluster'
   #       - CASSANDRA_NUM_TOKENS=256
   #       - CASSANDRA_RPC_ADDRESS=0.0.0.0
-    # restart: always
+  #   restart: always
 
 
 #   cassandra:
@@ -73,6 +73,7 @@ services:
         JAR_FILE: /M1/target/M1Application.jar
     environment:
       SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+    container_name: m1application
     depends_on:
       - kafka
 
@@ -86,6 +87,7 @@ services:
         JAR_FILE: /M2/target/M2Application.jar
     environment:
       SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+    container_name: m2application
     depends_on:
       - kafka
 
@@ -98,6 +100,7 @@ services:
         JAR_FILE: /M3/target/M3Application.jar
     environment:
       SPRING_KAFKA_BOOTSTRAPSERVERS: kafka:29092
+    container_name: m3application
     depends_on:
       - kafka
       - cassandradb
@@ -110,6 +113,15 @@ services:
       context: M4
       args:
         JAR_FILE: /M4/target/MApplication.jar
+    container_name: m4application
     depends_on:
       - cassandradb
     restart: always
+
+  webapplication:
+    image: webapplication
+    build: web
+    container_name: webapplication
+    # restart: always
+    ports:
+      - "8080:80"
