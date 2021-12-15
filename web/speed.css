@@ -13,9 +13,26 @@
     background-position:left ;
     background-attachment:fixed;
     background-color: #41B3A3;
-    
   
   }
+  .btn-1
+{
+  background:#266484;
+  border: 0;
+  margin-left: 20PX;
+  margin-top: 150px;
+  width: 90px;
+  height: 40px;
+  border-radius: 30px;
+  color: #ffff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+.btn-1:hover {
+  background: #69b578;
+  animation-name: shake;
+}
   
   h2 {
     color:black;
@@ -56,19 +73,19 @@
     color: black;
     font-size: 20px;
   }
-  button
+  .btn-2
 {
-  background:#8D8741;
+  background:grey;
   border: 0;
   width: 350px;
   height: 40px;
-  border-radius: 3px;
+  border-radius: 30px;
   color: #ffff;
   font-size: 12px;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
 }
-button:hover {
-  background: #16aa56;
+.btn-2:hover {
+  background: #a0ced9;
   animation-name: shake;
 }

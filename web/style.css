@@ -19,6 +19,34 @@ body
 
 }
 
+.btn2
+{
+  margin-left:30px;
+  margin-top:150px;
+  border: 0;
+  width: 90px;
+  height: 40px;
+  background:#5f85db;
+  background-image: linear-gradient(
+    225deg,
+    #27d86c 0%,
+    #26caf8 50%,
+    #c625d0 100%
+  );
+  box-shadow: 0 0 0 0 rgba(143,64,248,0.5),0 0 0 0(39,200,255,0.5);
+   border-radius: 30px;
+  color: #ffff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn2:hover {
+  
+  transform: translate(0,-6px);
+  box-shadow: 10px -10px 25px 0 rgba(143,64,248,0.5),-10px 10px 25px 0(39,200,255,0.5);
+}
+
 h2 {
   color:#3CAEA3;
   font-family: "Tisa";
@@ -72,22 +100,24 @@ label {
 
 
 
-input[type="submit"]
+.btn1
 {
-  background:#8D8741;
+  background:#0EA2F6;
   border: 0;
   width: 350px;
   height: 40px;
-  border-radius: 3px;
+  border-radius: 30px;
   color: #ffff;
   font-size: 12px;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
 }
-input[type="submit"]:hover {
-  background: #16aa56;
+.btn1:hover {
+  background: #3d3a50;
   animation-name: shake;
 }
+
+
 
 
 
