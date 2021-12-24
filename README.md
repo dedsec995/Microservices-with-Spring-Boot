@@ -15,7 +15,7 @@ cd Microservices-with-Spring-Boot
 git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
 git fetch --all
 git pull --all
-git checkout v1.3
+git checkout v1.7
 ```
 
 ## Dependencies

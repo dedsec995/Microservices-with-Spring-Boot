@@ -56,15 +56,24 @@ public class KafkaController {
 		}
 		else if(isEqual1 || isEqual2 || isEqual3 || isEqual4){
 			String vinn = RandomString.getVin();
+			String basespeeed = RandomString.getSpeed();
 			try{
 				for(i=0;i<vin;i++){
 					Date date=new Date();
 					Timestamp ts=new Timestamp(date.getTime());
 					DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String strDate=dateFormat.format(ts);	
-					String speeed = RandomString.getSpeed();
-					producer.publishToTopic(vinn+speeed+strDate);
-					Thread.sleep(secondsToSleep * 1000);
+					String strDate=dateFormat.format(ts);
+					if (i == 0){
+						basespeeed = RandomString.getSpeed();
+						producer.publishToTopic(vinn+basespeeed+strDate);
+						Thread.sleep(secondsToSleep * 1000);
+					}
+					else{
+						String speeed = RandomString.getStepSpeed(basespeeed);
+						basespeeed = speeed;
+						producer.publishToTopic(vinn+speeed+strDate);
+						Thread.sleep(secondsToSleep * 1000);
+					}	
 				}
 			}catch(InterruptedException ie){
 				Thread.currentThread().interrupt();

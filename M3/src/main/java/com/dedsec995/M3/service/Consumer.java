@@ -49,7 +49,7 @@ public class Consumer {
 		int speed = Integer.parseInt(message.substring(18, 21));
 		// User users=new User(message.substring(0, 17),message.substring(17,18),speed,message.substring(21, 22),ts);
 		// repository.save(users);
-		System.out.println("Done Writing");
+		// System.out.println("Done Writing");
 		
 		String s1=message.substring(21, 22);
 		String s2="y";
