@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: cassandradb
+  name: cassandradb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: cassandradb
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: cassandradb
+    spec:
+      containers:
+        - env:
+            - name: CASSANDRA_HOST
+              value: cassandradb
+            - name: CASSANDRA_RPC_ADDRESS
+              value: cassandradb-service
+          image: cassandra
+          imagePullPolicy: Never
+          name: cassandradb
+          ports:
+            - containerPort: 9042
+          resources: {}
+      restartPolicy: Always
+status: {}
