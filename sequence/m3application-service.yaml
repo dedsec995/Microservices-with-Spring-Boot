@@ -6,14 +6,14 @@ metadata:
     kompose.version: 1.26.0 (HEAD)
   creationTimestamp: null
   labels:
-    io.kompose.service: m3application
-  name: m3application
+    io.kompose.service: m3application-service
+  name: m3application-service
 spec:
   ports:
     - name: "8882"
       port: 8882
       targetPort: 8882
   selector:
-    io.kompose.service: m3application
+    io.kompose.service: m3application-service
 status:
   loadBalancer: {}

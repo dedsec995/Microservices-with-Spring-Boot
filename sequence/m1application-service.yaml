@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: m1application-service
+  name: m1application-service
+spec:
+  ports:
+    - name: "8880"
+      port: 8880
+      targetPort: 8880
+  selector:
+    io.kompose.service: m1application-service
+status:
+  loadBalancer: {}
