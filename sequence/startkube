@@ -1,2 +1,4 @@
 sudo systemctl start libvirtd.service
 sudo systemctl start virtlogd.service
+
+kubectl exec -it cassandra-0 cqlsh

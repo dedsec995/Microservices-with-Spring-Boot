@@ -28,7 +28,6 @@ spec:
             - name: SPRING_KAFKA_BOOTSTRAPSERVERS
               value: kafka-service:9092
           image: dedsec995/microservices-with-spring-boot_m3application
-          imagePullPolicy: Never
           name: m3application-container
           ports:
             - containerPort: 8882
