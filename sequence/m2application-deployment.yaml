@@ -27,8 +27,7 @@ spec:
         - env:
             - name: SPRING_KAFKA_BOOTSTRAPSERVERS
               value: kafka-service:9092
-          image: microservices-with-spring-boot_m2application
-          imagePullPolicy: Never
+          image: dedsec995/microservices-with-spring-boot_m2application
           name: m2application-container
           ports:
             - containerPort: 8881
