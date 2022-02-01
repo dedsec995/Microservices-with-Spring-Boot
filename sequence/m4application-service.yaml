@@ -6,14 +6,14 @@ metadata:
     kompose.version: 1.26.0 (HEAD)
   creationTimestamp: null
   labels:
-    io.kompose.service: cassandradb-service
-  name: cassandradb-service
+    io.kompose.service: m4application-service
+  name: m4application-service
 spec:
   ports:
-    - name: "9042"
-      port: 9042
-      targetPort: 9042
+    - name: "8883"
+      port: 8883
+      targetPort: 8883
   selector:
-    io.kompose.service: cassandradb-service
+    io.kompose.service: m4application-service
 status:
   loadBalancer: {}
