@@ -9,12 +9,10 @@ metadata:
     io.kompose.service: m4application-service
   name: m4application-service
 spec:
-  type: NodePort
+  type: ClusterIP 
   ports:
     - name: "8883"
       port: 8883
-      nodePort: 30000
-      targetPort: 8883
   externalIPs:
     - 1.2.4.114
   selector:

@@ -9,7 +9,7 @@
 <!-- partial:index.partial.html -->
 <button class="btn-1" onclick="document.location='index.html'">Single Manual Entry</button>
 <div class='ManualEntry'>
-  <form id="myForm" method="POST" action = "http://localhost:8880/my/pro">
+  <form id="myForm" method="POST" action = "http://10.111.116.240:8880/my/pro">
 
 
   <h2>Vin and Frequency</h2>
@@ -24,7 +24,7 @@
   <br>
 </div>
 <script>
-  const url = "http://localhost:8880/my/pro";
+  const url = "http://10.111.116.240:8880/my/pro";
   const formEl = document.getElementById("myfFrm");
   formEl.addEventListener("submit",async(e) =>{
     e.preventDefault();
