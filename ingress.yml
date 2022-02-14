@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx-example
+  rules:
+  - host: hello-world.info
+  - http:
+      paths:
+      - path: /m1
+        pathType: Prefix
+        backend:
+          service:
+            name: m1application-service
+            port:
+              number: 8880
+      - path: /m2
+        pathType: Prefix
+        backend:
+          service:
+            name: m2application-service
+            port:
+              number: 8881
+      - path: /m3
+        pathType: Prefix
+        backend:
+          service:
+            name: m3application-service
+            port:
+              number: 8882
+      - path: /m4
+        pathType: Prefix
+        backend:
+          service:
+            name: m4application-service
+            port:
+              number: 8883

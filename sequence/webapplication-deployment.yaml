@@ -24,7 +24,8 @@ spec:
         io.kompose.service: webapplication
     spec:
       containers:
-        - image: dedsec995/webapplication
+        - image: webapplication:latest
+          imagePullPolicy: Never
           name: webapplication
           ports:
             - containerPort: 80
